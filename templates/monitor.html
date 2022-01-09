@@ -1,0 +1,63 @@
+{% extends "dash_base.html" %}
+{% block head %}
+{{super()}}
+{% endblock %}
+{% block header %}
+{{super()}}
+{% endblock %}
+{% block content %}
+<h2>Monitor</h2>
+<h3>Plant</h3>
+{% if p_name %}
+<p>Name: {{p_name}}</p>
+<p>Minimum Temperature: {{p_min_temp}}</p>
+<p>Maximum Temperature: {{p_max_temp}}</p>
+<p>Day Length: {{p_day_length}}</p>
+<p>Light Intensity: {{p_light}}</p>
+<p>Number of Weekly Irrigation: {{p_irrigation}}</p>
+<p>Moisture Level of the Soil: {{p_moisture}}</p>
+<br />
+{% else %}
+<p>No Data</p>
+<br />
+{% endif %}
+<h3>Light</h3>
+<canvas id="light_canvas"></canvas>
+<br />
+<h3>Temperature</h3>
+{% if temp %}
+<p>{{temp}}</p>
+{% else %}
+<p>No Data</p>
+{% endif %}
+
+<br />
+<h3>Water Tank</h3>
+{% if tank %}
+{% if tank== 1 %}
+<p>Tank Has Water!</p>
+{% else %}
+{% endif %}
+<p>There is no water in the tank!</p>
+{% else %}
+<p>No Data</p>
+{% endif %}
+
+<br />
+<h3>Moisture Level</h3>
+{% if moisture %}
+{% if moisture== 1 %}
+<p>Medium</p>
+{% elif moisture==2 %}
+<p>High</p>
+{% else %}
+<p>Low</p>
+{% endif %}
+{% else %}
+<p>No Data</p>
+
+{% endif %}
+{% endblock %}
+{% block footer %}
+{{super()}}
+{% endblock %}
