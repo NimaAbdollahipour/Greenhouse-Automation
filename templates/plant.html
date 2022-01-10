@@ -7,9 +7,42 @@
 {% endblock %}
 {% block content %}
 <h2>New Plant</h2>
-
-
-
+<form action="{{url_for('add_plant')}}" method="post">
+    <h3>Name</h3>
+    <input name="name" type="text" class="full-width big">
+    <h3>Minimum Temperature</h3>
+    <input name="min_temp" type="number" class="full-width big">
+    <h3>Maximum Temperature</h3>
+    <input name="max_temp" type="number" class="full-width big">
+    <h3>Daylength</h3>
+    <input name="day_length" type="number" class="full-width big" max="24" min="0">
+    <h3>Light Intensity</h3>
+    <select name="light" class="big full-width">
+        <option value="3">High</option>
+        <option value="2">Medium</option>
+        <option value="1">Low</option>
+    </select>
+    <h3>Moisture Level of Soil</h3>
+    <select name="light" class="big full-width">
+        <option value="3">High</option>
+        <option value="2">Medium</option>
+        <option value="1">Low</option>
+    </select>
+    <h3>Irrigation Frequency</h3>
+    <select name="light" class="big full-width">
+        <option value="14">twice a day</option>
+        <option value="7">once a day</option>
+        <option value="2">twice a week</option>
+        <option value="3">3 times a week</option>
+        <option value="4">4 times a week</option>
+        <option value="5">5 times a week</option>
+        <option value="6">6 times a week</option>
+    </select>
+    <div class="text-center">
+        <button type="submit" class="btn btn-blue">Create</button>
+        <a href='#' type="button" class="btn btn-green">Reset</a>
+    </div>
+</form>
 
 
 

@@ -156,7 +156,14 @@ def register():
 
 @app.route('/logout')
 def logout():
-    session.pop('username', None)
+    if session.get('username', None):
+        session.pop('username', None)
+    return redirect(url_for('home'))
+
+@app.route('/addplant', methods=['POST','GET'])
+def add_plant():
+    if session.get('username', None):
+        return render_template('monitor.html')
     return redirect(url_for('home'))
 
 
