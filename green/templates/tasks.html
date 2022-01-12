@@ -1,0 +1,42 @@
+{% extends "dash_base.html" %}
+{% block head %}
+{{super()}}
+{% endblock %}
+{% block header %}
+{{super()}}
+{% endblock %}
+{% block content %}
+<h2>Tasks</h2>
+<br />
+<hr />
+<h3>Command</h3>
+<form action="{{url_for('green.tasks')}}" method="post">
+	<select name="command">
+		<option value="turn on pump">turn on pump</option>
+		<option value="turn on heater">turn on heater</option>
+		<option value="turn on fan">turn on fan</option>
+		<option value="turn off pump">turn off pump</option>
+		<option value="turn off heater">turn off heater</option>
+		<option value="turn off fan">turn off fan</option>
+	</select>
+	<div class="text-center"><button type="submit" class="btn btn-blue">Send</button></div>
+</form>
+<hr />
+<h3>Configurations</h3>
+<form action="{{url_for('green.greenhouse')}}" method="post">
+	<input type="checkbox" name="email" class="checkbox">email<br/>
+	<input type="checkbox" name="email" class="checkbox">status email<br/>
+	<input type="checkbox" name="email" class="checkbox">extreme temperature email<br/>
+	<input type="checkbox" name="email" class="checkbox">low light email<br/>
+	<input type="checkbox" name="email" class="checkbox">water tank email<br/>
+	<input type="checkbox" name="email" class="checkbox">irrigation on specific hour<br/>
+	<label>hour 1</label>
+	<input type="number" name="email">
+	<label>hour 2</label>
+	<input type="number" name="email">
+	<div class="text-center"><button type="submit" class="btn btn-blue">Save</button></div>
+</form>
+{% endblock %}
+{% block footer %}
+{{super()}}
+{% endblock %}
