@@ -22,18 +22,13 @@
 	<div class="text-center"><button type="submit" class="btn btn-blue">Send</button></div>
 </form>
 <hr />
-<h3>Configurations</h3>
-<form action="{{url_for('green.greenhouse')}}" method="post">
-	<input type="checkbox" name="email" class="checkbox">email<br/>
-	<input type="checkbox" name="email" class="checkbox">status email<br/>
-	<input type="checkbox" name="email" class="checkbox">extreme temperature email<br/>
-	<input type="checkbox" name="email" class="checkbox">low light email<br/>
-	<input type="checkbox" name="email" class="checkbox">water tank email<br/>
-	<input type="checkbox" name="email" class="checkbox">irrigation on specific hour<br/>
-	<label>hour 1</label>
-	<input type="number" name="email">
-	<label>hour 2</label>
-	<input type="number" name="email">
+<h3>Account Configurations</h3>
+<form action="{{url_for('green.account_config')}}" method="post">
+	<input type="checkbox" name="email" class="checkbox" {% if config[0]%}checked{%endif%}>email<br/>
+	<input type="checkbox" name="email_status" class="checkbox" {% if config[1]%}checked{%endif%}>status email<br/>
+	<input type="checkbox" name="email_temp" class="checkbox" {% if config[2]%}checked{%endif%}>extreme temperature email<br/>
+	<input type="checkbox" name="email_light" class="checkbox" {% if config[3]%}checked{%endif%}>low light email<br/>
+	<input type="checkbox" name="email_tank" class="checkbox" {% if config[4]%}checked{%endif%}>water tank email<br/>
 	<div class="text-center"><button type="submit" class="btn btn-blue">Save</button></div>
 </form>
 {% endblock %}

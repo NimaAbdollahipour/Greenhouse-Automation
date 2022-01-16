@@ -8,55 +8,78 @@
 {% block content %}
 <h2>Monitor</h2>
 <h3>Plant</h3>
-{% if p_name %}
-<p>Name: {{p_name}}</p>
-<p>Minimum Temperature: {{p_min_temp}}</p>
-<p>Maximum Temperature: {{p_max_temp}}</p>
-<p>Day Length: {{p_day_length}}</p>
-<p>Light Intensity: {{p_light}}</p>
-<p>Number of Weekly Irrigation: {{p_irrigation}}</p>
-<p>Moisture Level of the Soil: {{p_moisture}}</p>
+{% if selected.name %}
+<p>Name: {{selected.name}}</p>
+<p>Minimum Temperature: {{selected.min_temp}}</p>
+<p>Maximum Temperature: {{selected.max_temp}}</p>
+<p>Day Length: {{selected.day_length}}</p>
+<p>Light Intensity: {{selected.light}}</p>
+<p>Number of Weekly Irrigation: {{selected.irrigation}}</p>
+<p>Moisture Level of the Soil: {{selected.moisture}}</p>
 <br />
 {% else %}
 <p>No Data</p>
 <br />
 {% endif %}
 <h3>Light</h3>
-<canvas id="light_canvas"></canvas>
+<p style="display: none;" id="light_l">{{green.light}}</p>
+<canvas id="light_canvas" height="240px" width="300px" onclick="show()"></canvas>
 <br />
 <h3>Temperature</h3>
-{% if temp %}
-<p>{{temp}}</p>
-{% else %}
-<p>No Data</p>
-{% endif %}
-
+<p style="display: none;" id="temp_l">{{green.temp}}</p>
+<canvas id="temp_canvas" height="240px" width="300px" onclick="show()" onload=""></canvas>
 <br />
 <h3>Water Tank</h3>
-{% if tank %}
-{% if tank== 1 %}
+{% if green.tank %}
 <p>Tank Has Water!</p>
 {% else %}
-{% endif %}
-<p>There is no water in the tank!</p>
-{% else %}
-<p>No Data</p>
+<p>Tank Is Empty!</p>
 {% endif %}
 
 <br />
 <h3>Moisture Level</h3>
-{% if moisture %}
-{% if moisture== 1 %}
+{% if green.moisture %}
+{% if green.moisture== 1 %}
 <p>Medium</p>
-{% elif moisture==2 %}
+{% elif green.moisture==2 %}
 <p>High</p>
 {% else %}
 <p>Low</p>
 {% endif %}
 {% else %}
 <p>No Data</p>
-
 {% endif %}
+<script>
+function show(){
+var canvas1 = document.getElementById("light_canvas");
+var canvas2 = document.getElementById("temp_canvas");
+var ctx1 = canvas1.getContext("2d");
+var ctx2 = canvas2.getContext("2d");
+
+var light = document.getElementById('light_l').innerHTML
+var temp = document.getElementById('temp_l').innerHTML
+var light_array = light.split(',')
+var temp_array = temp.split(',')
+ctx1.strokeStyle = "yellow";
+ctx2.strokeStyle = "red";
+ctx1.lineWidth = 3;
+ctx2.lineWidth = 3;
+var cursor = [0,140]
+for(i=0; i<light_array.length; i++){
+    ctx1.moveTo(cursor[0], cursor[1]);
+    ctx1.lineTo(i*12,140-parseInt(light_array[i])*2);
+    cursor = [i*12,140-parseInt(light_array[i])*2]
+    ctx1.stroke();
+}
+cursor = [0,140]
+for(i=0; i<light_array.length; i++){
+    ctx2.moveTo(cursor[0], cursor[1]);
+    ctx2.lineTo(i*12,140-parseInt(light_array[i])*2);
+    cursor = [i*12,140-parseInt(light_array[i])*2]
+    ctx2.stroke();
+}
+}
+</script>
 {% endblock %}
 {% block footer %}
 {{super()}}

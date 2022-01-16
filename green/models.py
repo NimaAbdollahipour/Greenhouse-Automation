@@ -1,11 +1,13 @@
+from distutils.command.config import config
+from email.policy import default
 from . import db
 class User(db.Model):
-    __tablename__ = 'users'
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(50))
     email = db.Column(db.String(120))
     username = db.Column(db.String(30))
     password = db.Column(db.String(30))
+    config = db.Column(db.String(5), default = '11111')
 
     def __init__(self, name, email, username, password):
         self.name = name
@@ -15,7 +17,6 @@ class User(db.Model):
 
 
 class Plant(db.Model):
-    __tablename__ = 'plants'
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(60))
     user = db.Column(db.Integer)
@@ -38,21 +39,22 @@ class Plant(db.Model):
 
 
 class Greenhouse(db.Model):
-    __tablename__ = 'greenhouse'
     id = db.Column(db.Integer, primary_key=True)
     user = db.Column(db.Integer)
     temp = db.Column(db.String(120))
     light = db.Column(db.String(120))
+    moisture = db.Column(db.Integer)
     tank = db.Column(db.Boolean)
     plant = db.Column(db.Integer)
     s_irr_t = db.Column(db.Boolean)
     time1 = db.Column(db.Time)
     time2 = db.Column(db.Time)
 
-    def __init__(self, user, temp, light, tank, plant, s_irr_t, time1, time2):
+    def __init__(self, user, temp, light,moisture, tank, plant, s_irr_t, time1, time2):
         self.user = user
         self.temp = temp
         self.light = light
+        self.moisture = moisture
         self.tank = tank
         self.plant = plant
         self.s_irr_t = s_irr_t

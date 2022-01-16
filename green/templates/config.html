@@ -1,0 +1,35 @@
+{% extends "dash_base.html" %}
+{% block head %}
+{{super()}}
+{% endblock %}
+{% block header %}
+{{super()}}
+{% endblock %}
+{% block content %}
+<h2>Tasks</h2>
+<br />
+<hr />
+<h3>Configurations</h3>
+<form action="{{url_for('green.config')}}" method="post">
+    <label>Plant</label>
+    <p>Current Value: {{selected.name}}</p>
+    <select size="5" name='plant'>
+        {%for plant in plants%}
+        <option value="{{plant.id}}">{{plant.name}}</option>
+        {%endfor%}
+    </select>
+    <hr/>
+    <input type="checkbox" name="sp_time" class="checkbox" {%if green.s_irr_t%}checked{%endif%}>irrigation on specific hour<br/>
+    <hr/>
+	<h4>Time 1</h4>
+    <p>Current Value: {{green.time1}}</p>
+	<input type="time" name="time1">
+	<h4>Time 2</h4>
+    <p>Current Value: {{green.time2}}</p>
+	<input type="time" name="time2">
+	<div class="text-center"><button type="submit" class="btn btn-blue">Save</button></div>
+</form>
+{% endblock %}
+{% block footer %}
+{{super()}}
+{% endblock %}
