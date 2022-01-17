@@ -111,6 +111,7 @@ select{
 }
 canvas{
     border:1px solid green;
+    background: linear-gradient(to bottom,rgb(255, 110, 110) 50%, rgb(115, 115, 255) 50%);
 }
 .big{
     padding: 10px;

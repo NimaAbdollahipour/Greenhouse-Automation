@@ -21,13 +21,15 @@
 <p>No Data</p>
 <br />
 {% endif %}
+<hr />
 <h3>Light</h3>
 <p style="display: none;" id="light_l">{{green.light}}</p>
-<canvas id="light_canvas" height="240px" width="300px" onclick="show()"></canvas>
+<canvas id="light_canvas" height="320px" width="400px" onclick="show()"></canvas>
 <br />
+<hr />
 <h3>Temperature</h3>
 <p style="display: none;" id="temp_l">{{green.temp}}</p>
-<canvas id="temp_canvas" height="240px" width="300px" onclick="show()" onload=""></canvas>
+<canvas id="temp_canvas" height="320px" width="400px" onclick="show()" onload="show()"></canvas>
 <br />
 <h3>Water Tank</h3>
 {% if green.tank %}
@@ -35,7 +37,7 @@
 {% else %}
 <p>Tank Is Empty!</p>
 {% endif %}
-
+<hr />
 <br />
 <h3>Moisture Level</h3>
 {% if green.moisture %}
@@ -55,27 +57,29 @@ var canvas1 = document.getElementById("light_canvas");
 var canvas2 = document.getElementById("temp_canvas");
 var ctx1 = canvas1.getContext("2d");
 var ctx2 = canvas2.getContext("2d");
-
 var light = document.getElementById('light_l').innerHTML
 var temp = document.getElementById('temp_l').innerHTML
 var light_array = light.split(',')
 var temp_array = temp.split(',')
-ctx1.strokeStyle = "yellow";
-ctx2.strokeStyle = "red";
-ctx1.lineWidth = 3;
-ctx2.lineWidth = 3;
-var cursor = [0,140]
+ctx1.strokeStyle = "black";
+ctx2.strokeStyle = "black";
+ctx1.lineWidth = 10;
+ctx2.lineWidth = 10;
+var cursor = [5,160]
 for(i=0; i<light_array.length; i++){
-    ctx1.moveTo(cursor[0], cursor[1]);
-    ctx1.lineTo(i*12,140-parseInt(light_array[i])*2);
-    cursor = [i*12,140-parseInt(light_array[i])*2]
+    var x = parseInt(light_array[i])
+    ctx1.moveTo(5+i*16,160);
+    ctx1.lineTo(5+i*16,160-x*2);
+    cursor = [5 + i*16,160-x*2]
+    console.log('[for 1]:'+ (parseInt(light_array[i])*2))
     ctx1.stroke();
 }
-cursor = [0,140]
-for(i=0; i<light_array.length; i++){
-    ctx2.moveTo(cursor[0], cursor[1]);
-    ctx2.lineTo(i*12,140-parseInt(light_array[i])*2);
-    cursor = [i*12,140-parseInt(light_array[i])*2]
+cursor = [5,160]
+for(i=0; i<temp_array.length; i++){
+    var x = parseInt(temp_array[i])
+    ctx2.moveTo(5+i*16,160);
+    ctx2.lineTo(5+i*16,160-x*2);
+    cursor = [5+i*16,160-x*2]
     ctx2.stroke();
 }
 }

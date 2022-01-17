@@ -13,6 +13,8 @@ def monitor():
     if session.get('username', None):
         g = Greenhouse.query.filter_by(user = session['id']).first()
         s = Plant.query.get(g.plant)
+        print(g.temp)
+        print(g.light)
         return render_template('monitor.html',green = g,selected = s)
     return redirect(url_for('auth.login'))
 
