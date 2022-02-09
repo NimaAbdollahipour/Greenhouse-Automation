@@ -13,12 +13,8 @@ def monitor():
     if session.get('username', None):
         g = Greenhouse.query.filter_by(user = session['id']).first()
         s = Plant.query.get(g.plant)
-        print(g.temp)
-        print(g.light)
         return render_template('monitor.html',green = g,selected = s)
     return redirect(url_for('auth.login'))
-
-
 
 @green.route('/new_plant',methods=["POST","GET"])
 def new_plant():
@@ -26,7 +22,7 @@ def new_plant():
         if request.method == "POST":
             for key,value in request.form.items():
                 if len(value.strip()) == 0:
-                    flash(key+"is not valid")
+                    flash(key+" is not valid")
                     return redirect(url_for('green.new_plant'))
             db.session.add(Plant(
                 request.form['name'],
@@ -111,12 +107,12 @@ def tasks():
                 User.query.filter_by(username = session['username']).first().id
                 ))
             db.session.commit()
+            return redirect(url_for('green.tasks'))
         else:
             conf = User.query.get(session['id']).config
             conf = list(conf)
             for i in range(len(conf)):
                 conf[i] = int(conf[i])
-            print(conf)
             return render_template('tasks.html',config=conf)
     else:
         redirect(url_for('auth.login'))

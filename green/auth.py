@@ -39,7 +39,6 @@ def signup():
             flash("Passwords didn't match!")
             return redirect(url_for('auth.signup'))
         else:
-            flash("Wrong Username")
             db.session.add(User(
                 request.form['name'],
                 request.form['email'],

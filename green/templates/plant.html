@@ -6,6 +6,15 @@
 {{super()}}
 {% endblock %}
 {% block content %}
+<div class="flash">
+    {% with messages = get_flashed_messages() %}
+        {% if messages %}
+            {% for message in messages %}
+                <p>{{message}}</p>
+            {% endfor %}
+        {% endif %}
+    {% endwith %}
+</div>
 <h2>New Plant</h2>
 <form action="{{url_for('green.new_plant')}}" method="post">
     <label>Name</label>

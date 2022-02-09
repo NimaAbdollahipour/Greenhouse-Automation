@@ -41,9 +41,9 @@
 <br />
 <h3>Moisture Level</h3>
 {% if green.moisture %}
-{% if green.moisture== 1 %}
+{% if green.moisture== 2 %}
 <p>Medium</p>
-{% elif green.moisture==2 %}
+{% elif green.moisture==3 %}
 <p>High</p>
 {% else %}
 <p>Low</p>
@@ -69,8 +69,8 @@ var cursor = [5,160]
 for(i=0; i<light_array.length; i++){
     var x = parseInt(light_array[i])
     ctx1.moveTo(5+i*16,160);
-    ctx1.lineTo(5+i*16,160-x*2);
-    cursor = [5 + i*16,160-x*2]
+    ctx1.lineTo(5+i*16,160-x*20);
+    cursor = [5 + i*16,160-x*20]
     console.log('[for 1]:'+ (parseInt(light_array[i])*2))
     ctx1.stroke();
 }
@@ -83,6 +83,7 @@ for(i=0; i<temp_array.length; i++){
     ctx2.stroke();
 }
 }
+window.onload = show()
 </script>
 {% endblock %}
 {% block footer %}
