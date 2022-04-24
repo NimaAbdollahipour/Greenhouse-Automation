@@ -15,7 +15,7 @@ Warn user if there is an extreme condition that is out of control.
 - Using Web App, the user can define conditions for a plant.
 - User can choose the type of plant in the greenhouse (The system will work based on this information)
 - Activate or Deactivate the Pump, Heater, and Fan
-- Users can choose to receive warning emails or not
+- Users can choose to receive warning emails
 - Users can choose specific irrigation hours
 - Displays the graph of light and temperature in the past 24 hours. The application shows if there is water in the tank and the level of the moistness in the soil.
 - Sends email to the user if there is a problem with the greenhouse.
