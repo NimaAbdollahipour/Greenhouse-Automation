@@ -3,9 +3,17 @@ import flask
 from .models import Greenhouse, User
 from . import db
 from datetime import *
+from functools import wraps
 auth = Blueprint("auth",__name__)
 
-
+def login_required(f):
+    @wraps(f)
+    def decorated(*args,**kwargs):
+        if not session.get('id'):
+            return redirect(url_for('auth.login'))
+        current_user = User.query.get(session.get('id'))
+        return f(*args,**kwargs)
+    return decorated
 
 @auth.route('/login', methods= ["POST", "GET"])
 def login():
@@ -67,7 +75,7 @@ def signup():
 
 
 @auth.route('/logout', methods=["POST"])
+@login_required
 def logout():
-    if session.get('username',None):
-        session.pop('username')
-        return redirect(url_for('auth.login'))
+    session.clear()
+    return redirect(url_for('auth.login'))

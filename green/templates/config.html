@@ -6,10 +6,7 @@
 {{super()}}
 {% endblock %}
 {% block content %}
-<h2>Tasks</h2>
-<br />
-<hr />
-<h3>Configurations</h3>
+<h2>Configurations</h2>
 <form action="{{url_for('green.config')}}" method="post">
     <label>Plant</label>
     <p>Current Value: {{selected.name}}</p>

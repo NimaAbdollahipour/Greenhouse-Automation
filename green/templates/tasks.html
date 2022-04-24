@@ -12,23 +12,19 @@
 <h3>Command</h3>
 <form action="{{url_for('green.tasks')}}" method="post">
 	<select name="command">
-		<option value="turn on pump">turn on pump</option>
-		<option value="turn on heater">turn on heater</option>
-		<option value="turn on fan">turn on fan</option>
-		<option value="turn off pump">turn off pump</option>
-		<option value="turn off heater">turn off heater</option>
-		<option value="turn off fan">turn off fan</option>
+		<option value="turn on pump">turn on pump for 5s</option>
+		<option value="turn on pump">turn on pump for 10s</option>
+		<option value="turn on pump">turn on pump for 15s</option>
 	</select>
 	<div class="text-center"><button type="submit" class="btn btn-blue">Send</button></div>
 </form>
 <hr />
 <h3>Account Configurations</h3>
 <form action="{{url_for('green.account_config')}}" method="post">
-	<input type="checkbox" name="email" class="checkbox" {% if config[0]%}checked{%endif%}>email<br/>
-	<input type="checkbox" name="email_status" class="checkbox" {% if config[1]%}checked{%endif%}>status email<br/>
-	<input type="checkbox" name="email_temp" class="checkbox" {% if config[2]%}checked{%endif%}>extreme temperature email<br/>
-	<input type="checkbox" name="email_light" class="checkbox" {% if config[3]%}checked{%endif%}>low light email<br/>
-	<input type="checkbox" name="email_tank" class="checkbox" {% if config[4]%}checked{%endif%}>water tank email<br/>
+	<input type="checkbox" name="email" class="checkbox" {% if gr.email_enabled%}checked{%endif%}>email<br/>
+	<input type="checkbox" name="fan" class="checkbox" {% if gr.fan%}checked{%endif%}>fan<br/>
+	<input type="checkbox" name="heater" class="checkbox" {% if gr.heater%}checked{%endif%}>heater<br/>
+	<input type="checkbox" name="pump" class="checkbox" {% if gr.pump%}checked{%endif%}>pump<br/>
 	<div class="text-center"><button type="submit" class="btn btn-blue">Save</button></div>
 </form>
 {% endblock %}

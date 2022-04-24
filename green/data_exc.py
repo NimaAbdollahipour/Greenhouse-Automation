@@ -31,15 +31,17 @@ def data_exchange(current_user):
 		id = request.args.get('id')
 		if id:
 			g = Greenhouse.query.get(id)
+			p = Plant.query.get(g.plant_id)
 			if not g:
 				return jsonify({'message':'greenhouse not found!'})
 			return jsonify({
-				"id":id,
-				"temp":g.temp,
-				"light":g.light,
-				"moisture":g.moisture,
-				"tank":g.tank,
-				"plant":g.plant
+				"plant_max_temp":p.max_temp,
+				"plant_min_temp":p.min_temp,
+				"plant_moisture":p.moisture,
+				"email":g.email_enabled,
+				"fan":g.fan,
+				"pump":g.pump,
+				"heater":g.heater
 				})
 		else: 
 			return jsonify({"message":"id is missing!"})
