@@ -5,11 +5,11 @@ Control the temperature using a fan and heater and control the moisture level of
 Warn user if there is an extreme condition that is out of control.
 
 ## Hardware (Prototype)
-**Controller:** Arduino Mega 2560, 
-**Light Sensor**, 
-**Water Sensor**, 
-**Temperature Sensor**, 
-**Soil Moisture Sensor**
+- **Controller:** Arduino Mega 2560
+- **Light Sensor**
+- **Water Sensor**
+- **Temperature Sensor**
+- **Soil Moisture Sensor**
 
 ## Features
 - Using Web App, the user can define conditions for a plant.
