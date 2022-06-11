@@ -1,5 +1,3 @@
-from distutils.command.config import config
-from email.policy import default
 from . import db
 class User(db.Model):
     id = db.Column(db.Integer, primary_key=True)
